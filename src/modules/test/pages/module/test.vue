@@ -1,0 +1,31 @@
+<template>
+    <a-layout-content>
+        <a-layout-content style="border:1px solid #ddd;" :style="{ padding: '0 24px', minHeight: '280px' }">sssssdd</a-layout-content>
+        <a-layout-content style="border:1px solid #ddd;" :style="{ padding: '0 24px', minHeight: '280px' }">1111</a-layout-content>
+    </a-layout-content>
+</template>
+<script lang="ts" setup>
+    
+ 
+</script>
+<style>
+    #components-layout-demo-top-side .logo {
+        float: left;
+        width: 120px;
+        height: 31px;
+        margin: 16px 24px 16px 0;
+        background: rgba(255, 255, 255, 0.3);
+    }
+  
+    .ant-row-rtl #components-layout-demo-top-side .logo {
+        float: right;
+        margin: 16px 0 16px 24px;
+    }
+  
+    .site-layout-background {
+        background: #fff;
+    }
+
+    .ant-layout-sider-collapsed{min-width: 10px !important;max-width: 10px !important;}
+  </style>
+  
