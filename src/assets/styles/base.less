@@ -1,0 +1,69 @@
+/**********************************************************************************************************************全局变量*******************************************************************************************************************************************/
+
+@activeText:#333;                                             // 按钮单选按钮 选中后文案颜色
+@borderColor:#ddd;                                            // 边框颜色
+
+
+/*****************************************************************************************************************************************************************************************************************************************************************/
+
+
+.vue3-waterfall-wrapper{width: 100% !important;}
+.ant-menu-item:hover{
+    background-color: #e6f7ff;
+}
+
+.left_Nav_box{
+    li{
+        &.ant-menu-item-selected,&:hover{
+            background-color: #00BCC3 !important;
+            a{color: #fff !important;}
+        }
+    }
+   
+}
+
+/************************************************************************************************************************按钮更改**********************************************************************************************************************************/
+
+//按钮更改
+.ant-btn{border-radius: 8px;}
+// 单选更改
+.ant-radio-button-wrapper,.ant-radio-button-wrapper-checked{box-shadow: none !important;}
+.ant-radio-button-wrapper::before,.ant-radio-button-wrapper-checked::before{content: ''; background: transparent !important;}
+// 单选更改
+.ant-radio-button-wrapper{border-color: @activeText !important; border-radius: 8px;}
+.ant-radio-button-wrapper-checked{border-color: @primary-color !important; background: @primary-color !important; color: @activeText !important;}
+//按钮设置
+&.ant-btn-primary{
+    color: @activeText;
+    &:hover{color: @activeText;}
+}
+/*************************************************************************************************************************抽屉组件样式****************************************************************************************************************************/
+//抽屉组件样式更改
+.ant-drawer{
+    .ant-drawer-content-wrapper{
+        position: relative;
+        .ant-drawer-wrapper-body{
+            padding: 2.5rem;
+            padding-bottom: 1.8rem;
+            .ant-drawer-header.ant-drawer-header-close-only{
+                border: 0;
+                .ant-drawer-close{
+                    position: absolute;
+                    width: 1.6rem;
+                    height: 1.6rem;
+                    line-height: 0.3rem;
+                    left: 0px;
+                    // border-radius: 2rem;
+                    // background-color: #999999;
+                    // color: #fff;
+                }
+            }
+            .ant-drawer-body{
+                padding: 0;
+            }
+        }
+    }
+}
+
+
+/*****************************************************************************************************************************************************************************************************************************************************************/

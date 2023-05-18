@@ -1,6 +1,12 @@
 body{
-    padding: 30px 30px 50px;
+    padding: 20px;
+    font-family:'Microsoft YaHei','微软雅黑','PingFang SC',Arial, Helvetica, sans-serif;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
+
+ 
+
 .ant-layout-sider-children{
 	position: relative;
 }
@@ -10,3 +16,28 @@ body{
 }
 .scale-enter-active,.scale-leave-active {transition: all 0.3s ease;}
 .scale-enter-from,.scale-leave-to {opacity: 0;transform: scale(0.9);}
+
+.ant-card{
+    padding: 1.5rem !important;
+    box-shadow: 0px 1px 9px rgb(239, 239, 239);
+    .ant-card-head{
+        border-bottom: 0 !important;
+        padding: 0;
+        min-height: auto;
+        .ant-card-head-wrapper{
+            .ant-card-head-title,.ant-card-extra{
+                padding: 0;
+            }
+        }
+    }
+    .ant-card-body{
+        padding: 0;
+    }
+    .ant-card-actions{
+        border-top: 0 !important;
+        li{
+            margin: 0;
+            border: 0 !important;
+        }
+    }
+}

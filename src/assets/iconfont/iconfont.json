@@ -1,0 +1,44 @@
+{
+  "id": "4060799",
+  "name": "宇嘉微",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "35452835",
+      "name": "zhihuizhanfang",
+      "font_class": "zhihuizhanfang",
+      "unicode": "e605",
+      "unicode_decimal": 58885
+    },
+    {
+      "icon_id": "35452836",
+      "name": "shujudaping",
+      "font_class": "shujudaping",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "35452837",
+      "name": "xitongshezhi",
+      "font_class": "xitongshezhi",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
+      "icon_id": "35452838",
+      "name": "jiancekanban",
+      "font_class": "jiancekanban",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "35452839",
+      "name": "zhuji",
+      "font_class": "zhuji",
+      "unicode": "e609",
+      "unicode_decimal": 58889
+    }
+  ]
+}

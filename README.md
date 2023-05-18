@@ -11,6 +11,7 @@ vue3+vite+ts多页面（MPA）模板，支持单独模块打包，支持本地�
 - [antdv](https://www.antdv.com/components/overview) Ant Design of Vue，主题可调。
 <!-- - [vueuse](https://vueuse.org/) 尤雨溪推荐，可以理解为 vue3 的 hooks 库，专为 vues 设计 -->
 - [pinia](https://pinia.vuejs.org/) 替代 vuex4
+- [waterfall](https://github.com/gk-shi/v3-waterfall) v3版瀑布流插件
 
 ## 开发运行
 

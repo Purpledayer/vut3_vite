@@ -1,9 +1,10 @@
 @import "ant-design-vue/lib/style/themes/default.less";
+
 // defalut.less
 // 上面引入了核心样式文件，我们可以对其进行修改，覆盖原来的达到我们的目的。
 // 这里不仅能修改变量还能修改样式
 // 全局变量使用：@primary-color
-// 	'primary-color': '#1890ff', 								// 全局主色
+
 // 	'link-color': ' #1890ff', 									// 链接色
 // 	'success-color': ' #52c41a', 								// 成功色
 // 	'warning-color': ' #faad14', 								// 警告色
@@ -17,11 +18,53 @@
 // 	'border-color-base': ' #d9d9d9', 							// 边框色
 // 	'box-shadow-base': ' 0 2px 8px rgba(0, 0, 0, 0.15)' 		// 浮层阴影
 
-@body-background:#E6E8EF;                                     // body背景色
-@layout-body-background:#F5F7F9;                              // body内主体内容背景色
-// 链接色 青色
-@link-color: #18ffb2; 
-@layout-header-background:transparent;
 
- 
-.vue3-waterfall-wrapper{width: 100% !important;}
+@primary-color: #00BCC3; 								       // 全局主色  选中色等
+@body-background:#E6E8EF;                                     // body背景色
+@layout-body-background:transparent !important;                            // body内主体内容背景色
+@activeText:#fff;                                             // 按钮单选按钮 选中后文案颜色
+@borderColor:#ddd;                                            // 边框颜色
+
+.ant-layout-sider{background-color: #fff;}
+/****************************************************************************************************************************设置页导航*************************************************************************************************************************************/
+#set_menu_box{
+    border-right: 0px;
+    box-shadow: none;
+    li{
+        box-shadow: none;
+        &.ant-menu-item-group{
+            border-radius: 0px;
+            &:nth-child(n+2){
+                border-top: 1px solid #ddd;
+            }
+        }
+        .ant-menu-item-group-list{
+            li{
+                padding-left: 1rem !important;
+                &::after{content: ''; border-right: 0px;}
+                &.ant-menu-item-selected,&:hover{
+                    background: rgba(230, 248, 249);
+                    border-radius: 0.25rem;
+                    &::after{content: ''; border-right: 0px;}
+                    a{color: #00B7BD;}
+                }
+            }
+        }
+        
+    }
+}
+
+
+.ant-modal{
+    .ant-modal-content{
+        border-radius: 4px;
+        .ant-modal-header{border-color: #EEEEEE;}
+        .ant-modal-footer{
+            button{
+                width: 120px;
+                border-radius: 4px;
+            }
+        }
+    }
+    
+}

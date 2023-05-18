@@ -15,10 +15,9 @@ import { resolve, join } from 'path';
 import { wrapperEnv } from './build/utils';
 
 import { readdirSync } from "fs";
+import fse from 'fs-extra';
 
-
-import unocss from 'unocss/vite'
-
+import Unocss from 'unocss/vite'
 const project_pages = {};
 const entryPath = resolve(__dirname, "./src");
 const entrys = readdirSync(entryPath).reduce((obj, dirname) => {
@@ -33,15 +32,17 @@ Object.keys(entrys).forEach(pageName => {
 
 // defineConfig 工具函数，这样不用 jsdoc 注解也可以获取类型提示
 export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
-
+	console.log('mode',mode)
 	const root = process.cwd()
 	const env = loadEnv(mode, process.cwd());											// 环境变量对象
-	const { VITE_DROP_CONSOLE ,VITE_APP_BASE_API} = wrapperEnv(env)
+	const { VITE_DROP_CONSOLE ,VITE_APP_BASE_API,VITE_APP_API} = wrapperEnv(env)
 	console.log(command, mode, '===')
 	console.log('环境变量------', env)
 	console.log('文件路径(process.cwd())------', root)
 	console.log('文件路径(dirname)------', __dirname + '/src')
 	console.log('VITE_APP_BASE_API',VITE_APP_BASE_API)
+	console.log('VITE_APP_API',VITE_APP_API)
+	
 
 
 	const isDev = mode === "development";
@@ -55,6 +56,10 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
 		pages = { ...project_pages };
 	  }
 	}
+	let pagesDir = [{dir: 'pages', baseRoute: '/'},	{dir: '../../pages/views', baseRoute: '/'},];
+	if(mode != 'sass'){
+		pagesDir.push({dir: '../../pages/init_page', baseRoute: '/'})
+	}
 	// dev 独有配置
 	return {
 		root: env.VITE_APP_ROOTPATH,																					// 项目根目录（index.html 文件所在的位置） 默认： process.cwd()
@@ -66,17 +71,14 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
 			vue(),
 			vueJsx(),
 			Pages({
-				pagesDir: [
-					{dir: 'pages', baseRoute: '/'},
-					{dir: '../../views', baseRoute: '/'},
-				],
+				pagesDir: pagesDir,
 				exclude: ['**/components/*.vue']  																		// 排除在外的目录，即不将所有 components 目录下的 .vue 文件生成路由
 			}),
 			Layouts({
 				layoutsDirs: '../../layout',  																			// 布局文件存放目录
 				defaultLayout: 'default'  																					// 默认布局，对应 src/layout/index.vue
 			}),
-			unocss(),
+			Unocss(),
 			AutoImport({
 				imports: ['vue','vue-router','pinia',{axios: [['default', 'axios']]}],
 				dts: 'types/auto-import.d.ts' 																			// 生成全局引入的文件
@@ -108,18 +110,11 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
 			cors: false, 															// 为开发服务器配置 CORS
 			proxy: {
 				//配置自定义代理规则
-				// 字符串简写写法
-				'/jpi': 'http://192.168.1.97:4567',
 				'/dev-api': {
-					target: 'http://192.168.1.104:8080/',
-					changeOrigin: true, //是否跨域
-					rewrite: path => path.replace(/^\/dev-api/, '')
-				},
-				'/dev-video-api': {
-					target: `http://192.168.1.127:85/`,
+					target: VITE_APP_BASE_API,
 					changeOrigin: true,
-					rewrite: path => path.replace(/^\/dev-video-api/, '')
-				  },
+					rewrite: path => path.replace(/^\/dev-api/,'')
+				},
 			}
 			// hmr: {
 			//   overlay: false
@@ -127,7 +122,7 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
 		},
 		// ******项目构建配置******
 		build: {
-			target: 'modules', 													  										// 设置最终构建的浏览器兼容目标 es2015(编译成es5) | modules
+			// target: 'modules', 													  										// 设置最终构建的浏览器兼容目标 es2015(编译成es5) | modules
 			emptyOutDir:true,
 			assetsInlineLimit: 4096,																					 // 图片转 base64 编码的阈值
 			outDir: '../../../dist', 																					// 构建得包名  默认：dist
@@ -155,9 +150,9 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
 				},
 				sourcemap: false,
 				chunkFileNames: (chunkInfo) => {																		// 拆分js到模块文件夹
-				  const facadeModuleId = chunkInfo.facadeModuleId ? chunkInfo.facadeModuleId.split('/') : [];
-				  const fileName = facadeModuleId[facadeModuleId.length - 2] || '[name]';
-				  return `js/[name].[hash].js`;
+					const facadeModuleId = chunkInfo.facadeModuleId ? chunkInfo.facadeModuleId.split('/') : [];
+					const fileName = facadeModuleId[facadeModuleId.length - 2] || '[name]';
+					return `js/[name].[hash].js`;
 				},
 			  }
 			},
@@ -167,7 +162,7 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
 					drop_debugger: true,
 				},
 			},
-		},
+		},			
 		// ******resolver配置******
 		resolve: {
 			alias: {
@@ -190,6 +185,7 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
 			preprocessorOptions: {
 				less: {
 					javascriptEnabled: true,
+					additionalData:  `@import "${path.resolve(__dirname, 'src/assets/styles/base.less')}";`
 				}
 			}
 		}

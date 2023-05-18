@@ -1,6 +1,5 @@
 // $ 命令行交互 如果本地存在此项目 根据用户选择是否替换本项目或者删除本项目
 // $ 添加了未包含在原生fs模块中的文件系统方法，并向fs方法添加了promise支持
-// const fse = require("fs-extra");
 import fse from 'fs-extra';
 import chalk from 'chalk';
 import path from "path";

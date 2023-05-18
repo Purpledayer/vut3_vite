@@ -1,8 +1,8 @@
 <template>
 	<div class="limit-box">
-		<v3-waterfall :key="forUpdate" class="waterfall" :list="list" srcKey="cover" :gap="12" :distanceToScroll="200" scrollBodySelector=".limit-box" :isMounted="isMounted" :isLoading="loading" :isOver="over" @scrollReachBottom="getNext">
-			<template v-slot:default="slotProp">
-				<div style="background: rgb(255, 255, 255);border-radius:9px; padding: 20px;">
+		<v3-waterfall :key="forUpdate" class="waterfall " :colWidth="200" :list="list" srcKey="cover" :gap="12" :distanceToScroll="200" scrollBodySelector=".limit-box" :isMounted="isMounted" :isLoading="loading" :isOver="over" @scrollReachBottom="getNext" >
+			<template v-slot:default="slotProp" >
+				<div style="background: rgb(255, 255, 255);border-radius:9px; padding: 20px; height: 178px;" class="hover:shadow-lg hover:cursor-pointer" >
 					<div >{{ slotProp.item.name }}</div>
 					<div style="text-align: center;">
 						<a-progress style="margin-left:10px" v-for="(child,i) in slotProp.item.list" :steps="child.all" :key="i" type="circle" :percent="child.number" :width="filtersProgressWidth(slotProp.item.list.length)">
@@ -65,19 +65,19 @@
   
 <style lang="less" scoped>
 .limit-box {height: 100%;overflow-y: scroll;}
+// 滚动条宽度
+// 定义滚动条轨道 
+// 滑块
 .limit-box:hover{
-	// 滚动条宽度
 	::-webkit-scrollbar{width: 6px;}
-	/* 定义滚动条轨道 */
 	::-webkit-scrollbar-track{-webkit-box-shadow:none;border-radius: 10px;background-color: transparent;}
-	/* 滑块 */
 	::-webkit-scrollbar-thumb {	border-radius: 10px;background-color: rgba(0, 0, 0, 1);}
 }
 // 滚动条宽度
-::-webkit-scrollbar{  width: 6px;}
-/* 定义滚动条轨道 */
-::-webkit-scrollbar-track{  -webkit-box-shadow:none;  border-radius: 10px;  background-color: transparent;}
 /* 滑块 */
+/* 定义滚动条轨道 */
+::-webkit-scrollbar{  width: 6px;}
+::-webkit-scrollbar-track{  -webkit-box-shadow:none;  border-radius: 10px;  background-color: transparent;}
 ::-webkit-scrollbar-thumb {  border-radius: 10px;  background-color: rgba(0, 0, 0, 0.2);}
 
 .progressWidth1{ width: 55px;}
