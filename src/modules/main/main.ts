@@ -25,7 +25,6 @@ import '@/assets/iconfont/iconfont.js';
 
 
 
-import 'element-plus/dist/index.css'
  
 
 
